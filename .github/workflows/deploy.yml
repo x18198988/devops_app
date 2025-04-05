@@ -32,19 +32,22 @@ jobs:
             git clone https://github.com/x18198988/devops_app.git
             cd devops_app
 
-            # Create venv if it doesn't exist
+            # Delete the old database
+            rm -f database.db
+
+            # Create virtual environment
             if [ ! -d "venv" ]; then
               python3.11 -m venv venv
             fi
 
-            # Activate venv and install requirements
+            # Activate virtual environment and install dependencies
             source venv/bin/activate
             pip install --upgrade pip
             pip install -r requirements.txt
 
-            # Kill any running app (assuming it's on port 5000)
+            # Kill any running Flask app (safely ignore if nothing running)
             pkill -f "flask run" || true
 
-            # Run the Flask app in background (for demo purposes)
+            # Start the app in background
             nohup flask run --host=0.0.0.0 --port=5000 > flask.log 2>&1 &
           EOF
