@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">Resumes</h2>
+<a href="{{ url_for('add_resume') }}" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Add Resume</a>
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Summary</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for resume in resumes %}
+        <tr>
+            <td>{{ resume.name }}</td>
+            <td>{{ resume.email }}</td>
+            <td>{{ resume.summary }}</td>
+            <td>
+                <a href="{{ url_for('edit_resume', id=resume.id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                <a href="{{ url_for('delete_resume', id=resume.id) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
