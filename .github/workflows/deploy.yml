@@ -3,7 +3,7 @@ name: 🚀 Deploy Flask App to EC2
 on:
   push:
     branches:
-      - main  # or your default branch
+      - main
 
 jobs:
   deploy:
@@ -25,17 +25,17 @@ jobs:
             # Navigate to home directory
             cd ~
 
-            # Remove existing app if you want clean state
+            # Remove existing app for a clean state
             rm -rf devops_app
 
-            # Clone the latest code
+            # Clone latest code
             git clone https://github.com/x18198988/devops_app.git
             cd devops_app
 
-            # Delete the old database
-            rm -f database.db
+            # Delete database if it exists in the 'instance' folder
+            rm -f instance/database.db
 
-            # Create virtual environment
+            # Create virtual environment if not exists
             if [ ! -d "venv" ]; then
               python3.11 -m venv venv
             fi
@@ -45,7 +45,7 @@ jobs:
             pip install --upgrade pip
             pip install -r requirements.txt
 
-            # Kill any running Flask app (safely ignore if nothing running)
+            # Kill any running Flask app
             pkill -f "flask run" || true
 
             # Start the app in background

@@ -1,7 +1,9 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, flash, make_response
 from flask_sqlalchemy import SQLAlchemy
 from weasyprint import HTML
 
+# Flask app setup
 app = Flask(__name__)
 app.secret_key = 'secret123'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -20,7 +22,10 @@ class Resume(db.Model):
     experience = db.Column(db.Text)
     education = db.Column(db.Text)
 
+# Recreate database (wipe + create)
 with app.app_context():
+    if os.path.exists("database.db"):
+        os.remove("database.db")
     db.create_all()
 
 # Routes
@@ -95,5 +100,6 @@ def download_pdf(id):
     response.headers['Content-Disposition'] = f'attachment; filename={resume.name}_resume.pdf'
     return response
 
+# Run the app
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
