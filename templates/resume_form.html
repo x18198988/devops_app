@@ -2,18 +2,15 @@
 {% block content %}
 <h2>{{ resume and 'Edit Resume' or 'Add Resume' }}</h2>
 <form method="POST">
-    <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" name="name" required value="{{ resume.name if resume else '' }}">
-    </div>
-    <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" name="email" required value="{{ resume.email if resume else '' }}">
-    </div>
-    <div class="mb-3">
-        <label for="summary" class="form-label">Professional Summary</label>
-        <textarea class="form-control" name="summary" rows="5" required>{{ resume.summary if resume else '' }}</textarea>
-    </div>
+    <div class="mb-3"><label>Name</label><input type="text" class="form-control" name="name" value="{{ resume.name if resume else '' }}" required></div>
+    <div class="mb-3"><label>Email</label><input type="email" class="form-control" name="email" value="{{ resume.email if resume else '' }}" required></div>
+    <div class="mb-3"><label>Phone</label><input type="text" class="form-control" name="phone" value="{{ resume.phone if resume else '' }}"></div>
+    <div class="mb-3"><label>LinkedIn</label><input type="url" class="form-control" name="linkedin" value="{{ resume.linkedin if resume else '' }}"></div>
+    <div class="mb-3"><label>GitHub</label><input type="url" class="form-control" name="github" value="{{ resume.github if resume else '' }}"></div>
+    <div class="mb-3"><label>Summary</label><textarea name="summary" class="form-control">{{ resume.summary if resume else '' }}</textarea></div>
+    <div class="mb-3"><label>Skills</label><textarea name="skills" class="form-control">{{ resume.skills if resume else '' }}</textarea></div>
+    <div class="mb-3"><label>Experience</label><textarea name="experience" class="form-control">{{ resume.experience if resume else '' }}</textarea></div>
+    <div class="mb-3"><label>Education</label><textarea name="education" class="form-control">{{ resume.education if resume else '' }}</textarea></div>
     <button type="submit" class="btn btn-success">Save</button>
     <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancel</a>
 </form>

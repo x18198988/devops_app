@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card p-4 shadow">
+    <h2><i class="fas fa-user-circle text-primary"></i> {{ resume.name }}</h2>
+    <p><i class="fas fa-envelope"></i> {{ resume.email }} | <i class="fas fa-phone"></i> {{ resume.phone }}</p>
+    <p><i class="fab fa-linkedin"></i> {{ resume.linkedin }}</p>
+    <p><i class="fab fa-github"></i> {{ resume.github }}</p>
+    <hr>
+    <h5><i class="fas fa-user-tag"></i> Summary</h5><p>{{ resume.summary }}</p>
+    <h5><i class="fas fa-tools"></i> Skills</h5><p>{{ resume.skills }}</p>
+    <h5><i class="fas fa-briefcase"></i> Experience</h5><p>{{ resume.experience }}</p>
+    <h5><i class="fas fa-graduation-cap"></i> Education</h5><p>{{ resume.education }}</p>
+    <a href="{{ url_for('download_pdf', id=resume.id) }}" class="btn btn-outline-secondary mt-3"><i class="fas fa-download"></i> Download PDF</a>
+</div>
+{% endblock %}
