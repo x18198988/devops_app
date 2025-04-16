@@ -33,7 +33,7 @@ jobs:
             cd devops_app
 
             # Delete database if it exists in the 'instance' folder
-            #rm -f instance/database.db
+            rm -f instance/database.db
 
             # Create virtual environment if not exists
             if [ ! -d "venv" ]; then
