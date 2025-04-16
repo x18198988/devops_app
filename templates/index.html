@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2 class="mb-4">Resumes</h2>
+<h2 class="mb-4"> All Resumes</h2>
 <a href="{{ url_for('add_resume') }}" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Add Resume</a>
 <div class="row">
     {% for resume in resumes %}
